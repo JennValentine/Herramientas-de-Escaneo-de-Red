@@ -1,4 +1,4 @@
-![logo](https://github.com/JennValentine/Ping-TTL/blob/main/Imagenes/Ping-TTL.jpg)
+![logo](https://edteam-media.s3.amazonaws.com/blogs/big/2ab53939-9b50-47dd-b56e-38d4ba3cc0f0.png)
 
 # Herramientas de Escaneo de Red
 
