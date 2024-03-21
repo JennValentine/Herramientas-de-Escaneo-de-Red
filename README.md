@@ -33,18 +33,17 @@ cd
 
 Ejecutar el script en la red local:
 
-
+* Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
 ```bash
 sudo Findips_arp-scan
 ```
-* Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
 
 Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
 
+* Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
 ```bash
 sudo Findips_nmap
 ```
-* Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
 
 Este script utiliza NMAP para buscar direcciones IP activas en la red local.
 
