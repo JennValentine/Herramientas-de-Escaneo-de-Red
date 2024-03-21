@@ -9,20 +9,6 @@ utilizando diferentes métodos de escaneo. Ambas herramientas ofrecen una forma 
 de identificar dispositivos activos en la red y proporcionan información útil sobre la 
 configuración de red del sistema local.
 
-## Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
-
-### Descripción
-
-Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
-
-## Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
-
-### Descripción
-
-Este script utiliza NMAP para buscar direcciones IP activas en la red local.
-
-
-
 ## :book: Instalacion
 ```bash
 cd /opt
@@ -47,13 +33,20 @@ cd
 
 Ejecutar el script en la red local:
 
+
 ```bash
 sudo Findips_arp-scan
 ```
+* Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
+
+Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
+
 ```bash
 sudo Findips_nmap
 ```
+* Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
 
+Este script utiliza NMAP para buscar direcciones IP activas en la red local.
 
 DATA: Ambas herramientas proporcionan una forma rápida y eficiente de escanear direcciones IP activas en la red local. 
 Es importante ejecutar los scripts con permisos de superusuario para acceder a la funcionalidad de escaneo de red.
