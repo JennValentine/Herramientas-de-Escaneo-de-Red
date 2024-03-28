@@ -1,16 +1,30 @@
 #!/bin/bash
 
 Acciones() {
-    echo -e "\n\033[01;33m[**] Buscando Ip's Activas en la red ...\n"
+    echo -e "\n\033[01;33m[**] Buscando IPs Activas en la red ...\n"
 
+    # Obtener la dirección IP y la dirección MAC
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
-    echo -ne "\033[1;31mDirección IP: \033[1;37m$ip \n\n\033[01;32m"
+    mac=$(ip addr | grep link/ether | awk '{print $2}')
 
+    # Mostrar la dirección IP y la dirección MAC
+    echo -ne "\033[1;31mDirección IP: \033[1;37m$ip\n"
+    echo -ne "\033[1;31mDirección MAC: \033[1;37m$mac\n"
+
+    # Obtener el rango de red
     interface=$(ip route show default | awk '/default/ {print $5}')
+    network=$(ip route | grep $interface | awk '{print $1}')
+
+    # Mostrar el rango de red
+    echo -ne "\033[1;31mRango de Red: \033[1;37m$network\n\n"
+
+    # Realizar el escaneo de la red
     scan_results=$(arp-scan --localnet --interface=$interface)
 
     # Eliminar la línea que contiene información de la interfaz
     scan_results=$(echo "$scan_results" | sed "/Interface: $interface/d")
+
+    echo -e "\033[1;34mIPs Activas:\n\033[01;32m"
 
     # Imprimir solo las líneas que contienen una dirección IP
     echo "$scan_results" | grep -E "(([0-9]{1,3}\.){3}[0-9]{1,3})"
@@ -18,4 +32,6 @@ Acciones() {
     echo -e "\n\033[1;33m[**] Escaneo finalizado\n"
     echo -e "\033[0;34m|--------------------------------------------|"
 }
+
+# Llamar a la función Acciones
 Acciones
