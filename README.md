@@ -1,43 +1,57 @@
-﻿![logo](https://github.com/JennValentine/extractPorts/blob/main/Imagenes/extractPorts.jpg)
+![logo](https://edteam-media.s3.amazonaws.com/blogs/big/2ab53939-9b50-47dd-b56e-38d4ba3cc0f0.png)
 
-# extractPorts
+# Herramientas de Escaneo de Red
 
-## :information_source: Descripción
-Este script Bash extrae y presenta información sobre puertos abiertos de un escaneo de Nmap.
-Toma el archivo de salida de un escaneo de Nmap como argumento, identifica la dirección IP,
-enumera los puertos abiertos y los copia al portapapeles usando xclip.
+## :information_source: Descripci�n
+Este conjunto de scripts Bash se encarga de buscar direcciones IP activas en la red local 
+utilizando diferentes métodos de escaneo. Ambas herramientas ofrecen una forma rápida y sencilla 
+de identificar dispositivos activos en la red y proporcionan información útil sobre la 
+configuración de red del sistema local.
 
 ## :arrow_down: Instalacion
 ```bash
-sudo apt-get install -y xclip
 cd /opt
-sudo rm -rf extractPorts
-sudo git clone https://github.com/JennValentine/extractPorts
-sudo chmod +x extractPorts/*
-cd extractPorts
+sudo rm -rf Findips
+sudo git clone https://github.com/JennValentine/Findips.git
+sudo chmod +x Findips/*
+cd Findips
 ls -lthas
 ```
 
 ## :book: Acceso directo
 ```bash
 cd
-cd /opt/extractPorts
-sudo cp extractPorts.sh extractPorts_$RANDOM.sh
-sudo mv extractPorts.sh extractPorts
-sudo rm -rf /usr/bin/extractPorts
-sudo mv extractPorts /usr/local/bin/
+cd /opt/Findips
+sudo cp Findips_arp-scan Findips_arp-scan_$RANDOM.sh
+sudo rm -rf /usr/local/bin/Findips_arp-scan
+sudo mv Findips_arp-scan /usr/local/bin/
+sudo cp Findips_nmap Findips_nmap_$RANDOM.sh
+sudo rm -rf /usr/local/bin/Findips_nmap
+sudo mv Findips_nmap /usr/local/bin/
 cd
 ```
 
 ## :hammer: Modo de Uso
 
-Ejecutar el script con el archivo de salida de Nmap (allPorts.gnmap) como argumento:
+Ejecutar el script en la red local:
+
+Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
 
 ```bash
-extractPorts allPorts.gnmap
+sudo Findips_arp-scan
 ```
-:books: DATA: Esto extraerá información sobre los puertos abiertos del archivo allPorts.gnmap proporcionado. 
-Además de ser visualizado en pantalla y copiado al portapapeles.
+:books: DATA: Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
 
-## :octocat: Créditos
+
+Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
+
+```bash
+sudo Findips_nmap
+```
+:books: DATA: Este script utiliza NMAP para buscar direcciones IP activas en la red local.
+
+:bookmark_tabs: Ambas herramientas proporcionan una forma r�pida y eficiente de escanear direcciones IP activas en la red local.
+Es importante ejecutar los scripts con permisos de superusuario para acceder a la funcionalidad de escaneo de red.
+
+## :octocat: Cr�ditos
 1. [Jenn Valentine](https://t.me/JennValentine) - Update Contributor
