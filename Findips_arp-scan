@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Comprobación de permisos de root
+[[ "$(whoami)" != "root" ]] && {
+    echo -e "\n\033[1;36m[\033[1;31mError\033[1;36m] \033[1;37m- \033[1;36mNecesitas ejecutar esto como administrador (root)"
+    echo -e "\n\033[1;32m sudo $0 "
+    exit 0
+}
+
 Acciones() {
     echo -e "\n\033[01;33m[**] Buscando IPs Activas en la red ...\n"
 
