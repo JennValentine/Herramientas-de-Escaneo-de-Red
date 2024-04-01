@@ -22,10 +22,10 @@ ls -lthas
 ```bash
 cd
 cd /opt/Findips
-sudo cp Findips_arp-scan Findips_arp-scan_$RANDOM.sh
+sudo cp Findips_arp-scan Findips_arp-scan_$RANDOM
 sudo rm -rf /usr/local/bin/Findips_arp-scan
 sudo mv Findips_arp-scan /usr/local/bin/
-sudo cp Findips_nmap Findips_nmap_$RANDOM.sh
+sudo cp Findips_nmap Findips_nmap_$RANDOM
 sudo rm -rf /usr/local/bin/Findips_nmap
 sudo mv Findips_nmap /usr/local/bin/
 cd
