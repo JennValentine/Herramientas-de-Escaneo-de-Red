@@ -1,29 +1,62 @@
 #!/bin/bash
+#====================================================
+#   SCRIPT:                   FIND IP'S - NMAP
+#   DESARROLLADO POR:         JENN VALENTINE 
+#   FECHA DE ACTUALIZACIÃ“N:  01-04-2024 
+#   CONTACTO POR TELEGRAMA:   https://t.me/JennValentine
+#   GITHUB OFICIAL:           https://github.com/JennValentine/Findips
+#====================================================
+
+# Paleta de colores
+reset="\033[0m"       # Restablecer todos los estilos y colores
+
+# Colores de texto
+black="\033[0;30m"     # Negro
+red="\033[0;31m"       # Rojo
+green="\033[0;32m"     # Verde
+yellow="\033[0;33m"    # Amarillo
+blue="\033[0;34m"      # Azul
+magenta="\033[0;35m"   # Magenta
+cyan="\033[0;36m"      # Cian
+white="\033[0;37m"     # Blanco
+
+checkmark="${green}[++]${reset}"
+error="${red}[--]${reset}"
+info="${yellow}[**]${reset}"
+process="${magenta}[>>]${reset}"
+
+barra="${blue}|--------------------------------------------|${reset}"
 
 Acciones() {
-    echo -e "\n\033[01;33m[**] Buscando Ip's Activas en la red ...\n"
+    echo -e "\n${info} ${green}Buscando Ip's Activas en la red ...\n"
 
+    # Obtener la direcciÃ³n IP y la direcciÃ³n MAC
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     mac=$(ip addr | grep link/ether | awk '{print $2}')
 
     # Mostrar la dirección IP y la dirección MAC
-    echo -ne "\033[1;31mDirección IP: \033[1;37m$ip\n"
-    echo -ne "\033[1;31mDirección MAC: \033[1;37m$mac\n"
+    echo -ne "${red}==> Dirección IP:       ${white}$ip\n"
+    echo -ne "${red}==> Dirección MAC:      ${white}$mac\n"
 
     # Obtener el rango de red
     interface=$(ip route show default | awk '/default/ {print $5}')
     network=$(ip route | grep $interface | awk '{print $1}')
 
     # Mostrar el rango de red
-    echo -ne "\033[1;31mRango de Red: \033[1;37m$network\n\n"
+    echo -ne "${red}==> Rango de Red:       ${white}$network\n\n"
 
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     gateway=$(ip route show | awk '(NR == 1) { print $3}')
     findip=`nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
 
-    echo -e "\033[1;34mIp's Activas:\n\n\033[01;32m$findip"
-    echo -e "\n\033[1;33m[**] Escaneo finalizado\n"
-    echo -e "\033[0;34m|--------------------------------------------|"
+    echo -e "${blue}Ip's Activas:\n\n${green}$findip"
+    echo -e "\n${checkmark} ${green} Escaneo finalizado\n"
+
+    echo -e "\n${yellow}${info} ${white}GITHUB OFICIAL: ${green}https://github.com/JennValentine/Findips\n"
+    echo -e "$barra"
 }
+
+# Llamar a la función Acciones
 Acciones
 
+# Fin del script
