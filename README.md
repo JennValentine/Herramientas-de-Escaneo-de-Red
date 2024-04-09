@@ -40,6 +40,7 @@ Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
 ```bash
 sudo Findips_arp-scan
 ```
+![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_arp-scan.jpg)
 :books: DATA: Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
 
 
@@ -48,6 +49,7 @@ Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
 ```bash
 sudo Findips_nmap
 ```
+![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_nmap.jpg)
 :books: DATA: Este script utiliza NMAP para buscar direcciones IP activas en la red local.
 
 :bookmark_tabs: Ambas herramientas proporcionan una forma rápida y eficiente de escanear direcciones IP activas en la red local.
