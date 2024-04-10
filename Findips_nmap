@@ -24,6 +24,7 @@ checkmark="${green}[++]${reset}"
 error="${red}[--]${reset}"
 info="${yellow}[**]${reset}"
 process="${magenta}[>>]${reset}"
+indicator="${red}==>${reset}"
 
 barra="${blue}|--------------------------------------------|${reset}"
 
@@ -35,15 +36,15 @@ Acciones() {
     mac=$(ip addr | grep link/ether | awk '{print $2}')
 
     # Mostrar la dirección IP y la dirección MAC
-    echo -ne "${red}==> Dirección IP:       ${white}$ip\n"
-    echo -ne "${red}==> Dirección MAC:      ${white}$mac\n"
+    echo -ne "${indicator} ${green}Dirección IP:       ${white}$ip\n"
+    echo -ne "${indicator} ${green}Dirección MAC:      ${white}$mac\n"
 
     # Obtener el rango de red
     interface=$(ip route show default | awk '/default/ {print $5}')
     network=$(ip route | grep $interface | awk '{print $1}')
 
     # Mostrar el rango de red
-    echo -ne "${red}==> Rango de Red:       ${white}$network\n\n"
+    echo -ne "${indicator} ${green}Rango de Red:       ${white}$network\n\n"
 
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     gateway=$(ip route show | awk '(NR == 1) { print $3}')
