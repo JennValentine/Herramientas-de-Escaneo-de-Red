@@ -4,9 +4,9 @@
 
 ## :information_source: Descripción
 Este conjunto de scripts Bash se encarga de buscar direcciones IP activas en la red local 
-utilizando diferentes mÃ©todos de escaneo. Ambas herramientas ofrecen una forma rÃ¡pida y sencilla 
-de identificar dispositivos activos en la red y proporcionan informaciÃ³n Ãºtil sobre la 
-configuraciÃ³n de red del sistema local.
+utilizando diferentes métodos de escaneo. Ambas herramientas ofrecen una forma rápida y sencilla 
+de identificar dispositivos activos en la red y proporcionan información útil sobre la 
+configuración de red del sistema local.
 
 ## :arrow_down: Instalacion
 ```bash
