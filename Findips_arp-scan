@@ -56,7 +56,7 @@ Acciones() {
     echo -ne "${indicator} ${green}Rango de Red:       ${white}$network\n\n"
 
     # Realizar el escaneo de la red
-    scan_results=$(sudo arp-scan --localnet --interface=$interface)
+    scan_results=$(arp-scan --localnet --interface=$interface)
 
     # Eliminar la lineas que contiene información de la interfaz
     scan_results=$(echo "$scan_results" | sed "/Interface: $interface/d")
