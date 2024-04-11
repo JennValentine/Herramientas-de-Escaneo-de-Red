@@ -30,6 +30,13 @@ indicator="${red}==>${reset}"
 # Barra de separación
 barra="${blue}|--------------------------------------------|${reset}"
 
+# Comprobación de permisos de root
+[[ "$(whoami)" != "root" ]] && {
+    echo -e "\n${yellow}[${red}Error${yellow}] ${white}- ${yellow}Necesitas ejecutar esto como administrador (root)${reset}"
+    echo -e "\n${green} sudo $0 ${reset}"
+    exit 0
+}
+
 Acciones() {
     echo -e "\n${info} ${green}Buscando Ip's Activas en la red ...\n"
 
@@ -50,7 +57,8 @@ Acciones() {
 
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     gateway=$(ip route show | awk '(NR == 1) { print $3}')
-    findip=`nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
+    findip=`sudo nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
+    #findip=$(sudo nmap -sS -O $gateway/24 | grep -E "^(Nmap scan|MAC Address|Device type)")
 
     echo -e "${blue}Ip's Activas:\n\n${green}$findip"
     echo -e "\n${checkmark} ${green} Escaneo finalizado\n"

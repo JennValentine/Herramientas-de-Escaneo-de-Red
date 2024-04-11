@@ -30,6 +30,13 @@ indicator="${red}==>${reset}"
 # Barra de separación
 barra="${blue}|--------------------------------------------|${reset}"
 
+# Comprobación de permisos de root
+[[ "$(whoami)" != "root" ]] && {
+    echo -e "\n${yellow}[${red}Error${yellow}] ${white}- ${yellow}Necesitas ejecutar esto como administrador (root)${reset}"
+    echo -e "\n${green} sudo $0 ${reset}"
+    exit 0
+}
+
 Acciones() {
     echo -e "\n${info} ${green}Buscando Ip's Activas en la red ...\n"
 
@@ -49,7 +56,7 @@ Acciones() {
     echo -ne "${indicator} ${green}Rango de Red:       ${white}$network\n\n"
 
     # Realizar el escaneo de la red
-    scan_results=$(arp-scan --localnet --interface=$interface)
+    scan_results=$(sudo arp-scan --localnet --interface=$interface)
 
     # Eliminar la lineas que contiene información de la interfaz
     scan_results=$(echo "$scan_results" | sed "/Interface: $interface/d")
