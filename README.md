@@ -20,14 +20,29 @@ ls -lthas
 
 ## :book: Acceso directo
 ```bash
+cd 
+sudo echo "cd /opt/Findips/ && sudo ./Findips_arp-scan" > Findips_arp-scan
+sudo echo "cd /opt/Findips/ && sudo ./Findips_nmap" > Findips_nmap
+sudo chmod +x Findips_arp-scan
+sudo chmod +x Findips_nmap
+sudo rm -rf /usr/local/bin/Findips_arp-scan
+sudo rm -rf /usr/local/bin/Findips_nmap
+sudo mv Findips_arp-scan /usr/local/bin/
+sudo mv Findips_nmap /usr/local/bin/
+cd
+```
+
+## :book: Acceso directo (Opcion 2)
+```bash
+cd 
+cd /opt/Findips
 sudo cp Findips_arp-scan Findips_arp-scan_$RANDOM
 sudo rm -rf /usr/local/bin/Findips_arp-scan
 sudo mv Findips_arp-scan /usr/local/bin/
-```
-```bash
 sudo cp Findips_nmap Findips_nmap_$RANDOM
 sudo rm -rf /usr/local/bin/Findips_nmap
 sudo mv Findips_nmap /usr/local/bin/
+cd
 ```
 
 ## :hammer: Modo de Uso
