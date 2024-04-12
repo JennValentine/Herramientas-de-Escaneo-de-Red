@@ -44,7 +44,8 @@ Acciones() {
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     mac=$(ip addr | grep link/ether | awk '{print $2}')
 
-    # Mostrar la dirección IP y la dirección MAC
+    # Mostrar el tipo de escaneo de red, la dirección IP y la dirección MAC
+    echo -ne "${indicator} ${green}Escaneo de red:     ${white}arp-scan\n"
     echo -ne "${indicator} ${green}Dirección IP:       ${white}$ip\n"
     echo -ne "${indicator} ${green}Dirección MAC:      ${white}$mac\n"
 
