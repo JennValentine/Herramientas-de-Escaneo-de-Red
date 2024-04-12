@@ -46,8 +46,9 @@ sudo Findips_arp-scan
 ```
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_arp-scan.jpg)
 :books: DATA: 
-* Obtiene la dirección IP y la dirección MAC de la interfaz de red.
+
 * Obtiene el rango de red.
+* Obtiene la dirección IP y la dirección MAC de la interfaz de red.
 * Utiliza arp-scan para escanear las direcciones IP dentro del rango de red en busca de dispositivos activos.
 * Filtra y muestra solo las direcciones IP activas encontradas en la red.
 
@@ -59,8 +60,8 @@ sudo Findips_nmap
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_nmap.jpg)
 :books: DATA: 
 
-* Obtiene la dirección IP y la dirección MAC de la interfaz de red.
 * Obtiene el rango de red.
+* Obtiene la dirección IP y la dirección MAC de la interfaz de red.
 * Utiliza Nmap para escanear las direcciones IP dentro del rango de red en busca de dispositivos activos.
 * Filtra y muestra solo las direcciones IP activas encontradas en la red.
 
