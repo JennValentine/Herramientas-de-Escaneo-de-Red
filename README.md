@@ -3,8 +3,7 @@
 # Herramientas de Escaneo de Red
 
 ## :information_source: Descripción
-Este conjunto de scripts Bash "Findips_arp-scan" y "Findips_nmap" son dos herramientas útiles para encontrar direcciones IP activas en la red. 
-"Findips_arp-scan" utilizando arp-scan, mientras que "Findips_nmap" utiliza nmap. Ambos scripts ofrecen una forma fácil y rápida de obtener información sobre los dispositivos conectados a la red, con una interfaz amigable. Recuerda ejecutarlos con permisos de superusuario para acceder a todas sus funcionalidades.
+"Findips_arp-scan" y "Findips_nmap" son herramientas implementadas en scripts Bash que utilizan arp-scan y nmap respectivamente. Estas herramientas son útiles para detectar direcciones IP activas en la red, ofreciendo una forma rápida y sencilla de obtener información sobre los dispositivos conectados. Se recomienda ejecutar ambos scripts con privilegios de superusuario para acceder a todas las funciones de escaneo de red disponibles.
 
 ## :arrow_down: Instalacion
 ```bash
