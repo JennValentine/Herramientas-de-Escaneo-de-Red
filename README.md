@@ -3,10 +3,8 @@
 # Herramientas de Escaneo de Red
 
 ## :information_source: Descripción
-Este conjunto de scripts Bash se encarga de buscar direcciones IP activas en la red 
-utilizando diferentes métodos de escaneo. Ambas herramientas ofrecen una forma rápida y sencilla 
-de identificar dispositivos activos en la red y proporcionan información útil sobre la 
-configuración de red del sistema local.
+Este conjunto de scripts Bash "Findips_arp-scan" y "Findips_nmap" son dos herramientas útiles para encontrar direcciones IP activas en la red. 
+"Findips_arp-scan" utilizando arp-scan, mientras que "Findips_nmap" utiliza nmap. Ambos scripts ofrecen una forma fácil y rápida de obtener información sobre los dispositivos conectados a la red, con una interfaz amigable. Recuerda ejecutarlos con permisos de superusuario para acceder a todas sus funcionalidades.
 
 ## :arrow_down: Instalacion
 ```bash
@@ -40,36 +38,34 @@ sudo cp /etc/arp-scan/mac-vendor.txt /opt/Findips
 
 ## :hammer: Modo de Uso
 
-Ejecutar el script en la red local:
+Ejecutar el script en la red:
 
-Herramienta 1: Escaneo de IP's Activas en la red local (ARP-SCAN)
+Herramienta 1: Escaneo de IP's Activas en la red (ARP-SCAN)
 
 ```bash
 sudo Findips_arp-scan
 ```
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_arp-scan.jpg)
-:books: DATA: Este script utiliza ARP-SCAN para buscar direcciones IP activas en la red local.
-
+:books: DATA: 
 * Obtiene la dirección IP y la dirección MAC de la interfaz de red.
 * Obtiene el rango de red.
 * Utiliza arp-scan para escanear las direcciones IP dentro del rango de red en busca de dispositivos activos.
 * Filtra y muestra solo las direcciones IP activas encontradas en la red.
 
-Herramienta 2: Escaneo de IP's Activas en la red local (NMAP)
+Herramienta 2: Escaneo de IP's Activas en la red (NMAP)
 
 ```bash
 sudo Findips_nmap
 ```
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_nmap.jpg)
-:books: DATA: Este script utiliza NMAP para buscar direcciones IP activas en la red local.
+:books: DATA: 
 
-* Obtiene la dirección IP.
+* Obtiene la dirección IP y la dirección MAC de la interfaz de red.
 * Obtiene el rango de red.
 * Utiliza Nmap para escanear las direcciones IP dentro del rango de red en busca de dispositivos activos.
 * Filtra y muestra solo las direcciones IP activas encontradas en la red.
 
-:bookmark_tabs: En resumen, ambas script automatiza el proceso de encontrar direcciones IP activas en una red utilizando arp-scan y nmap, y proporciona una interfaz de usuario amigable con mensajes de estado y enlaces de referencia. 
-Es importante ejecutar los scripts con permisos de superusuario para acceder a la funcionalidad de escaneo de red.
+:bookmark_tabs: En resumen, ambas script automatiza el proceso de encontrar direcciones IP activas en una red.
 
 ## :octocat: Créditos
 1. [Jenn Valentine](https://t.me/JennValentine) - Update Contributor
