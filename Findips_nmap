@@ -62,7 +62,7 @@ Acciones() {
     findip=$(sudo nmap -sn $gateway/24 | grep -E "(Nmap scan report for|MAC Address)" | sed -E 's/(Nmap scan report for |MAC Address: )//g' | awk 'NR%2{printf "%s ",$0;next} 1')
     
     echo -e "${blue}Ip's Activas:\n"
-    echo -e "${green}IP Address\tMAC Address\t    Fabricante"
+    echo -e "${cyan}IP Address\tMAC Address\t    Fabricante${green}"
     echo -e "$findip" | awk '{printf "%-16s%-20s%s\n", $1, $2, $3}'
     echo -e "\n${checkmark} ${green} Escaneo finalizado\n"
 

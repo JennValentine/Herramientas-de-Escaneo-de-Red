@@ -62,12 +62,12 @@ Acciones() {
     scan_results=$(echo "$scan_results" | sed "/Interface: $interface/d")
 
     echo -e "${blue}Ip's Activas:\n${green}"
-    echo -e "${green}IP Address\tMAC Address\t\tFabricante"
+    echo -e "${cyan}IP Address\tMAC Address\t\tFabricante${green}"
 
     # Imprimir solo las lineas que contienen una dirección IP
     echo "$scan_results" | grep -E "(([0-9]{1,3}\.){3}[0-9]{1,3})"
 
-    echo -e "\n${checkmark} ${green} Escaneo finalizado\n"
+    echo -e "\n${checkmark} ${green} Escaneo finalizado"
 
     echo -e "\n${yellow}${info} ${white}GITHUB OFICIAL: ${green}https://github.com/JennValentine/Findips\n"
     echo -e "$barra"
