@@ -40,7 +40,7 @@ barra="${blue}|--------------------------------------------|${reset}"
 Acciones() {
     echo -e "\n${info} ${green}Buscando Ip's Activas en la red ...\n"
 
-    # Obtener la direcciÃ³n IP y la direcciÃ³n MAC
+    # Obtener la dirección IP y la dirección MAC
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     mac=$(ip addr | grep link/ether | awk '{print $2}')
 
@@ -57,10 +57,16 @@ Acciones() {
 
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     gateway=$(ip route show | awk '(NR == 1) { print $3}')
-    findip=`nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
+    ###findip=`sudo nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
+    findip=$(sudo nmap -sn $gateway/24 | grep -E "(Nmap scan report for|MAC Address)" | sed -E 's/(Nmap scan report for |MAC Address: )//g' | awk 'NR%2{printf "%s ",$0;next} 1' | awk '{print $1, $2, $3}')
 
-    echo -e "${blue}Ip's Activas:\n\n${green}$findip"
+    echo -e "${blue}Ip's Activas:\n"
+    echo -e "${green}IP Address\tMAC Address"
+    echo -e "$findip" | awk '{printf "%-16s%s\n", $1, $2}'
     echo -e "\n${checkmark} ${green} Escaneo finalizado\n"
+
+    ###echo -e "${blue}Ip's Activas:\n\n${green}$findip"
+    ###echo -e "\n${checkmark} ${green} Escaneo finalizado\n"
 
     echo -e "\n${yellow}${info} ${white}GITHUB OFICIAL: ${green}https://github.com/JennValentine/Findips\n"
     echo -e "$barra"
