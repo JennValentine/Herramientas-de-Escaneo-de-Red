@@ -59,20 +59,44 @@ Acciones() {
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     gateway=$(ip route show | awk '(NR == 1) { print $3}')
 
-    # Desarrollador 
-    ###findip=`sudo nmap -sn $gateway/24 | grep report | awk -F for '{ print $2 }'`
-    ###findip=$(sudo nmap -sn $gateway/24 | grep -E "(Nmap scan report for|MAC Address)" | sed -E 's/(Nmap scan report for |MAC Address: )//g' | awk 'NR%2{printf "%s ",$0;next} 1' | awk '{print $1, $2, $3}')
-    
-    findip=$(sudo nmap -sn $gateway/24 | grep -E "(Nmap scan report for|MAC Address)" | sed -E 's/(Nmap scan report for |MAC Address: )//g' | awk 'NR%2{printf "%s ",$0;next} 1')
-    
-    echo -e "${blue}Ip's Activas:\n"
-    echo -e "${cyan}IP Address\tMAC Address\t    Fabricante${green}"
-    echo -e "$findip" | awk '{printf "%-16s%-20s%s\n", $1, $2, $3}'
-    echo -e "\n${checkmark} ${green} Escaneo finalizado"
+    # Ejecutar nmap para obtener las IP activas y direcciones MAC
+    nmap_output=$(sudo nmap -sn $gateway/24 | grep -E "(Nmap scan report for|MAC Address)" | sed -E 's/(Nmap scan report for |MAC Address: )//g' | awk 'NR%2{printf "%s ",$0;next} 1')
 
-    # Desarrollador 
-    ###echo -e "${blue}Ip's Activas:\n\n${green}$findip"
-    ###echo -e "\n${checkmark} ${green} Escaneo finalizado"
+    # Inicializar variable para almacenar la salida formateada
+    formatted_output=""
+
+    # Iterar sobre cada línea de la salida de nmap
+    while IFS= read -r line; do
+        # Extraer la IP y la MAC de la línea
+        ip=$(echo "$line" | awk '{print $1}')
+        mac=$(echo "$line" | awk '{print $2}')
+        fab=$(echo "$line" | awk '{print $3}')
+
+        # Ejecutar ping para obtener el TTL
+        ttl=$(ping -c 1 -n -W 1 "$ip" | grep "ttl=" | awk -F 'ttl=' '{print $2}' | awk '{print $1}')
+
+        # Determinar el sistema operativo
+        if [[ $ttl -le 64 && $ttl -ge 1 ]]; then
+            os="Linux"
+        elif [[ $ttl -ge 65 && $ttl -le 128 ]]; then
+            os="Windows"
+        elif [[ $ttl -ge 129 && $ttl -le 191 ]]; then
+            os="macOS"
+        elif [[ $ttl -ge 192 && $ttl -le 254 ]]; then
+            os="Cisco IOS"
+        else
+            os="Unknown"
+        fi
+
+        # Agregar la línea formateada a la salida
+        formatted_output+="${ttl}\t${os}\t${ip}\t${mac}\t${fab}\n"
+    done <<< "$nmap_output"
+
+    # Mostrar la salida formateada
+    echo -e "${blue}Ip's Activas:\n"
+    echo -e "${cyan}TTL\tOS\tIP Address\tMAC Address\t\tFabricante"
+    echo -e "${green}$formatted_output"
+    echo -e "\n${checkmark} ${green} Escaneo finalizado"
 
     echo -e "\n${yellow}${info} ${white}GITHUB OFICIAL: ${green}https://github.com/JennValentine/Findips\n"
     echo -e "$barra"
