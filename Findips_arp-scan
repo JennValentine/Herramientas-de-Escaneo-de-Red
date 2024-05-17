@@ -61,8 +61,11 @@ Acciones() {
     ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
     mac=$(ip addr | grep link/ether | awk '{print $2}')
 
-    # Mostrar el tipo de escaneo de red, la dirección IP y la dirección MAC
-    echo -ne "${indicator} ${green}Escaneo de red:     ${white}arp-scan\n"
+    # Obtener la version arp-scan
+    version_arp=$(arp-scan --version | grep arp-scan | awk '{print $1, $2}')
+
+    # Mostrar el tipo de escaneo de red, la dirección IP, la dirección MAC, la TTL y Posible Sistema 
+    echo -ne "${indicator} ${green}Escaneo de red:     ${white}$version_arp\n"
     echo -ne "${indicator} ${green}Dirección IP:       ${white}$ip\n"
     echo -ne "${indicator} ${green}Dirección MAC:      ${white}$mac\n"
 
@@ -96,7 +99,6 @@ Acciones() {
         
         fab=$(echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^[ \t]*//')
 
-
         # Ejecutar ping para obtener el TTL
         ttl=$(ping -c 1 -n -W 1 "$ip" 2>/dev/null | grep "ttl=" | awk -F 'ttl=' '{print $2}' | awk '{print $1}')
 
@@ -121,6 +123,22 @@ Acciones() {
     echo -e "${blue}Ip's Activas:\n"
     echo -e "${cyan}TTL\tOS\tIP Address\tMAC Address\t\tFabricante"
     echo -e "${green}$formatted_output"
+
+    # Obtener la dirección IP
+    ip=$(ip addr | grep inet | grep -v inet6 | grep -v "host lo" | awk '{print $2}' | awk -F "/" '{print $1}')
+
+    # Obtener el TTL y determinar el posible sistema operativo local
+    ttl_os=$(ping -c 1 -n -W 1 "$ip" 2>/dev/null | grep "ttl=" | awk -F 'ttl=' '{print $2}' | awk '{print $1}')
+    
+    case $ttl_os in
+        [1-64]*) os="Linux" ;;
+        [65-128]*) os="Windows" ;;
+        [129-191]*) os="macOS" ;;
+        [192-254]*) os="Cisco IOS" ;;
+        *) os="Unknown" ;;
+    esac
+    
+    echo -e "${green}$ttl_os\t$os\t$ip"
     echo -e "\n${checkmark} ${green} Escaneo finalizado"
 
     echo -e "\n${yellow}${info} ${white}GITHUB OFICIAL: ${green}https://github.com/JennValentine/Findips\n"
