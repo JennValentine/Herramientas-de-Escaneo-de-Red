@@ -5,17 +5,19 @@
 ## :information_source: Descripción
 "Findips_arp-scan" y "Findips_nmap" son herramientas implementadas en scripts Bash que utilizan arp-scan y nmap respectivamente. Estas herramientas son útiles para detectar direcciones IP activas en la red, ofreciendo una forma rápida y sencilla de obtener información sobre los dispositivos conectados.
 
-## :arrow_down: Instalacion
+## :computer: Instalación
 ```bash
 cd /opt
 sudo rm -rf Findips
 sudo git clone https://github.com/JennValentine/Findips.git
+sudo cp /usr/share/arp-scan/ieee-oui.txt /opt/Findips
+sudo cp /etc/arp-scan/mac-vendor.txt /opt/Findips
 sudo chmod +x Findips/*
 cd Findips
 ls -lthas
 ```
 
-## :book: Acceso directo
+## :key: Acceso Directo
 ```bash
 cd 
 sudo echo "cd /opt/Findips && sudo ./Findips_arp-scan" > Findips_arp-scan
@@ -29,13 +31,7 @@ sudo mv Findips_nmap /usr/local/bin/
 cd
 ```
 
-## :book: Archivos ieee-oui.txt y mac-vendor.txt para Findips_arp-scan
-```bash
-sudo cp /usr/share/arp-scan/ieee-oui.txt /opt/Findips
-sudo cp /etc/arp-scan/mac-vendor.txt /opt/Findips
-```
-
-## :hammer: Modo de Uso
+## :rocket: Modo de Uso
 
 Ejecutar el script en la red:
 
@@ -45,7 +41,7 @@ Herramienta 1: Escaneo de IP's Activas en la red (ARP-SCAN)
 Findips_arp-scan
 ```
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_arp-scan.jpg)
-:books: DATA: 
+:memo: Notas:  
 
 * Obtiene el rango de red.
 * Obtiene la dirección IP y la dirección MAC de la interfaz de red.
@@ -58,7 +54,7 @@ Herramienta 2: Escaneo de IP's Activas en la red (NMAP)
 Findips_nmap
 ```
 ![logo](https://github.com/JennValentine/Findips/blob/main/Imagenes/Findips_nmap.jpg)
-:books: DATA: 
+:memo: Notas: 
 
 * Obtiene el rango de red.
 * Obtiene la dirección IP y la dirección MAC de la interfaz de red.
@@ -67,5 +63,5 @@ Findips_nmap
 
 :bookmark_tabs: En resumen, ambas script automatiza el proceso de encontrar direcciones IP activas en una red.
 
-## :octocat: Créditos
-1. [Jenn Valentine](https://t.me/JennValentine) - Update Contributor
+## :email: Contacto
+* :busts_in_silhouette: [Jenn Valentine](https://t.me/JennValentine) - Update Contributor :octocat:
